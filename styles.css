@@ -228,7 +228,110 @@ img {
   box-shadow: 0 8px 30px rgba(0, 119, 181, 0.3);
 }
 
-.btn-hire {
+.btn-cv {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cv::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(34, 197, 94, 0.08) 100%);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.btn-cv:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
+}
+
+.btn-cv:hover::before {
+  opacity: 1;
+}
+
+/* CV Card in contact section */
+.cv-card {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.cv-card:hover {
+  border-color: var(--accent);
+}
+
+.cv-card:hover::before {
+  opacity: 1;
+}
+
+.cv-card-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-glow);
+  border-radius: var(--radius-sm);
+  color: var(--accent-light);
+  flex-shrink: 0;
+}
+
+.cv-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cv-card-body h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.cv-card-body p {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.cv-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cv-card-btn {
+  font-size: 0.78rem;
+  padding: 7px 14px;
+}
+
+
   background: var(--green);
   color: #000;
   font-size: 0.82rem;
