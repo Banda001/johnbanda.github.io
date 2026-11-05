@@ -134,6 +134,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   statNumbers.forEach(el => counterObserver.observe(el));
 
+  // --- Graduation Photo Gallery ---
+  const mainImg   = document.getElementById('grad-main-img');
+  const thumbBtns = document.querySelectorAll('.grad-thumb');
+
+  thumbBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Swap main image
+      mainImg.src = btn.getAttribute('data-src');
+      mainImg.alt = btn.querySelector('img').alt;
+
+      // Update active state
+      thumbBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
   // --- Contact Form ---
   // To enable real email delivery, replace the action URL in index.html
   // with your Formspree endpoint: https://formspree.io/f/YOUR_FORM_ID
