@@ -150,70 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Contact Form ---
-  // To enable real email delivery, replace the action URL in index.html
-  // with your Formspree endpoint: https://formspree.io/f/YOUR_FORM_ID
-  const contactForm = document.getElementById('contact-form');
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      const action = contactForm.getAttribute('action');
-
-      // If Formspree is not yet configured, show a friendly fallback
-      if (!action || action.includes('YOUR_FORM_ID')) {
-        e.preventDefault();
-        const btn          = contactForm.querySelector('button[type="submit"]');
-        const originalHTML = btn.innerHTML;
-        btn.innerHTML      = '✓ Thanks! Email me directly at jb938047@gmail.com';
-        btn.style.background = '#22c55e';
-        btn.disabled = true;
-        setTimeout(() => {
-          btn.innerHTML        = originalHTML;
-          btn.style.background = '';
-          btn.disabled         = false;
-        }, 4000);
-        return;
-      }
-
-      // Formspree is configured — let native form submit handle it,
-      // but show feedback while the request is in flight
-      e.preventDefault();
-      const btn          = contactForm.querySelector('button[type="submit"]');
-      const originalHTML = btn.innerHTML;
-      btn.innerHTML      = 'Sending…';
-      btn.disabled       = true;
-
-      try {
-        const data     = new FormData(contactForm);
-        const response = await fetch(action, {
-          method:  'POST',
-          headers: { Accept: 'application/json' },
-          body:    data,
-        });
-
-        if (response.ok) {
-          btn.innerHTML        = '✓ Message Sent!';
-          btn.style.background = '#22c55e';
-          contactForm.reset();
-          setTimeout(() => {
-            btn.innerHTML        = originalHTML;
-            btn.style.background = '';
-            btn.disabled         = false;
-          }, 3500);
-        } else {
-          throw new Error('Server error');
-        }
-      } catch {
-        btn.innerHTML        = 'Failed — try emailing directly';
-        btn.style.background = '#ef4444';
-        setTimeout(() => {
-          btn.innerHTML        = originalHTML;
-          btn.style.background = '';
-          btn.disabled         = false;
-        }, 4000);
-      }
-    });
-  }
+  // Contact form is handled by @formspree/ajax (loaded in index.html).
+  // The initForm() call wires up #contact-form to the Formspree endpoint.
 
   // --- Smooth scroll for all anchor links ---
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
