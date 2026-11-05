@@ -26,10 +26,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Copy site files to staging directory
+        run: |
+          mkdir -p _site
+          cp index.html styles.css script.js John_Banda_CV.pdf _site/
+          cp "Pic 1.jpeg" "Pic 2.jpeg" "Pic 3.jpeg" "Pic 4.jpeg" "Pic 5.jpeg" "Pic 6.jpeg" _site/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
