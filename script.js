@@ -134,13 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   statNumbers.forEach(el => counterObserver.observe(el));
 
-  // --- CV Modal — close on Escape key ---
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.getElementById('cv-modal').classList.remove('active');
-    }
-  });
-
   // --- Graduation Photo Gallery ---
   const mainImg   = document.getElementById('grad-main-img');
   const thumbBtns = document.querySelectorAll('.grad-thumb');
